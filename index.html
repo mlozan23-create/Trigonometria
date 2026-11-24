@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trigonometria</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --paper: #ffffff;
+      --ink: #182033;
+      --muted: #6b7280;
+      --accent: #4f46e5;
+      --accent-soft: #eef0ff;
+      --line: #e5e7eb;
+      --formula: #f8f9ff;
+    }
+    * { 
+      box-sizing: border-box; 
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 15% 0%, #e8ebff 0, transparent 32rem),
+        radial-gradient(circle at 90% 10%, #edf5ff 0, transparent 28rem),
+        var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+    
+    /* El wrapper és el que fixa l'amplada màxima per a tot el document */
+    .wrapper { 
+      max-width: 980px; 
+      margin: 0 auto; 
+      padding: 34px 20px 70px; 
+      width: 100%;
+    }
+
+    button {
+      border: 0; border-radius: 12px; background: #4f46e5; color: white;
+      font: inherit; font-weight: 700; padding: 12px 18px; cursor: pointer;
+      margin: 0 0 20px; box-shadow: 0 8px 20px #4f46e526;
+      display: block;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 44px clamp(26px, 5vw, 58px);
+      color: white;
+      background: linear-gradient(135deg, rgba(37, 32, 111, 0.75), rgba(91, 92, 226, 0.75)), 
+                  url('Imatges/FonsWeb3.jpg') center/cover no-repeat;
+      box-shadow: 0 24px 60px rgba(45, 43, 130, .20);
+      margin-bottom: 26px;
+      width: 100%; /* Força l'amplada al 100% del wrapper */
+    }
+    .hero::after {
+      content: "";
+      position: absolute; width: 220px; height: 220px; border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .18);
+      right: -55px; top: -70px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      line-height: 1.02; margin: 10px 0 12px; letter-spacing: -.04em;
+    }
+
+    /* Estructura vertical d'una sola columna per garantir la mateixa amplada */
+    .grid { 
+      display: flex;
+      flex-direction: column;
+      gap: 18px; 
+      width: 100%;
+    }
+
+    .card {
+      position: relative; 
+      background: var(--paper); 
+      border: 1px solid var(--line);
+      border-radius: 20px; 
+      padding: 28px 30px 30px 30px;
+      box-shadow: 0 10px 28px rgba(16, 24, 40, .055);
+      width: 100%; /* S'ajusta exactament a la mateixa amplada que la hero */
+    }
+
+    h2 { margin: 0 0 18px; font-size: 1.45rem; letter-spacing: -.02em; }
+    h3, h4 { font-weight: normal; margin: 5px 0; }
+    
+    /* Callout hereta la forma de card i només canvia la vora i el fons */
+    .callout {
+      border-left: 6px solid #0066cc;
+    }
+    .callout h2 { color: #0047AB; }
+    
+    .indent-list { margin-left: 2cm; }
+    .no-bullets { list-style-type: none; padding-left: 0; }
+    
+    .formulas {
+      margin-top: 15px;
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .fraction {
+      display: inline-block;
+      vertical-align: middle;
+      text-align: center;
+      font-style: italic;
+    }
+    .fraction > span { display: block; }
+    .fraction span.bottom { border-top: 1px solid black; }
+    
+    .formula-box {
+      padding: 11px 14px; border: 1px solid #e7e9f7; background: var(--formula);
+      border-radius: 10px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .96rem; overflow-x: auto; color: #20254a; margin-bottom: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .wrapper { padding: 18px 12px 40px; }
+      .card { padding: 24px 18px; }
+      .indent-list { margin-left: 1cm; }
+    }
+    @media print {
+      body { background: white; }
+      .wrapper { max-width: none; padding: 0; }
+      .hero, .card { box-shadow: none; break-inside: avoid; }
+      button { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<main class="wrapper">
+  <header class="hero">
+    <h1>Trigonometria</h1>
+  </header>
+
+  <!-- BOTÓ D'IMPRESSIÓ -->
+  <button class="btn-imprimir" onclick="window.print()">
+      🖨️ Descarrega el temari en PDF
+  </button>
+
+  <div class="grid">
+    <!-- Secció 1 -->
+    <section class="card">
+      <h2>1. Unitats angulars</h2>
+      <div>
+        <h4>El radian o radiant és una unitat del Sistema Internacional d'Unitats (SI), definida com l'angle amb un arc de circumferència de longitud igual al radi r d'aquesta.</h4> 
+        <h4>El º, grau sexagesimal o degree, és 
+          <math>
+            <mfrac>
+              <mn>1</mn>
+              <mn>360</mn>
+            </mfrac>
+          </math> d'un angle complet.
+        </h4>
+        <br>
+        <img src="Imatges/rad.png" alt="Radians">
+        <h3>Angle complet = 360º = 2&pi; rad ;          Angle pla = 180º = &pi; rad</h3>
+      </div>
+    </section>
+
+    <!-- Secció 2 -->
+    <section class="card">
+      <h2>2. Raons trigonomètriques d’un angle: sinus (sin), cosinus (cos) i tangent (tg o tan).</h2>
+      <h4>Una raó és una proporció entre dos valors.</h4> 
+      <h3><strong>2.1 Raons trigonomètriques al triangle rectangle.</a></h3></strong> 
+      <img src="Imatges\Raons_TR.jpg" alt="Raons trigonomètriques"><br>
+      <a href="https://www.geogebra.org/m/ghqrvehn">📌 Visualitza amb GeoGebra</a>
+      <h3><strong>2.2 Raons trigonomètriques en una circumferència de radi R centrada a l'origen</a></h3></strong>
+      <h4>Una raó és una proporció entre dos valors. Definim les raons en funció del punt de tall del segon costat de l'angle amb la circumferència i el radi d'aquesta.</h4> 
+      <img src="Imatges\Raons.jpg" alt="Raons trigonomètriques">
+      <br>
+      <a href="https://www.geogebra.org/m/fcvkfmr9">📌 Visualitza amb GeoGebra</a>
+      <div>
+        <h3><strong>2.3 Raons trigonomètriques en una circumferència de radi 1 centrada a l'origen</a></h3></strong>
+        <h4>Quan el radi de la circumferència és 1, circumferència trigonomètrica, podem representar gràficament el valor de les raons.</h4> 
+        <img src="Imatges\Raons_CU.jpg" alt="Raons trigonomètriques"><br>
+      <a href="https://www.geogebra.org/m/d83n6qkd">📌 Visualitza amb GeoGebra</a>
+        <h4> 💡 Es pot veure que el sinus i el cosinus de qualsevol angle són valors entre -1 i 1 i els signes de cada raó als diferents quadrants.</h4> 
+        <h4> 💡 Podem trobar angles amb la mateixa raó o oposada als diferents quadrants</a></h4> 
+      <a href="https://www.geogebra.org/m/gwmqwqev">📌 Visualitza amb GeoGebra</a>
+      </div>
+    </section>
+
+    <!-- Secció 3 -->
+    <section class="card">
+      <h2>3. Fórmules fonamentals</h2>
+      <div>
+        <img src="Imatges\form_.JPG" alt="Fórmules fonamentals">
+        <h4>Aquestes fórmules les pots demostrar amb el teorema de Pitàgores i la definició de les raons al triangle rectangle.</h4> 
+      </div>
+    </section>
+
+    <!-- Bloc Destacat 1 -->
+    <section class="card callout">
+      <h2>A partir de la definició de les raons puc demanar:</h2>
+      <ol class="indent-list">
+        <li>Donat un angle, situar-lo en un quadrant o un eix &rarr; Representar gràficament les seves raons.</li>
+        <li>
+          Donada una raó d’un angle &rarr; Determinar els angles que tenen aquesta raó
+          <p style="font-weight: normal;">(un amb la calculadora i un altre canviant de quadrant gràficament)</p>
+        </li>
+        <li>
+          Donat una raó d’un angle i el signe d’una altra o el quadrant &rarr; Determinar l’angle.
+          <p style="font-weight: normal;">(potser només amb la calculadora o canviant de quadrant gràficament)</p>
+        </li>
+        <li>Relacionar les raons d’un angle qualsevol amb un del primer quadrant.</li>
+        <li>
+          Donat una raó trigonomètrica i el quadrant &rarr; Calcular la resta de raons utilitzant les fórmules fonamentals de la trigonometria.
+          <div class="formulas">
+            <div>
+              tan &alpha; = 
+              <div class="fraction">
+                <span class="top">sin &alpha;</span>
+                <span class="bottom">cos &alpha;</span>
+              </div>
+            </div>
+            <div>;</div>
+            <div>sin<sup>2</sup> &alpha; + cos<sup>2</sup> &alpha; = 1</div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Secció 4 -->
+    <section class="card">
+      <h2>4. Determinació de triangles</h2>
+      <div>
+        <h4>Un triangle està determinat si amb les dades que em donen es pot construir de manera única.</h4>
+        <h4>Si no està determinat, pot ser que no es pugui construir o que hi hagi més d’una solució.</h4>
+        <h4>Per determinar un triangle necessitem conèixer:</h4>
+        <ol class="indent-list no-bullets">
+          <li>
+            <article><strong><h4>a) Els tres costats.</strong> </a></h4><p><img src="Imatges\3costats_.jpg" alt="3 costats"><a href="https://www.geogebra.org/m/mrkhj9q5">📌 Visualitza amb GeoGebra</a></p></article>
+          </li>
+          <li>
+            <article><strong><h4>b) Dos costats i l’angle que formen.</strong></h4><p><img src="Imatges\2costats_A_.jpg" alt="2 costats i angle"><a href="https://www.geogebra.org/material/copy/id/bgezujks">📌 Visualitza amb GeoGebra </a></p></article>
+          </li>
+          <li>
+            <article><strong><h4>c) Dos costats i l’angle oposat a un d’aquests costats.</strong></h4><p><img src="Imatges\2costats_A2_.jpg" alt="2 costats i angle oposat"><a href="https://www.geogebra.org/m/rshwnb5j">📌 Visualitza amb GeoGebra </a></p></article>
+          </li>
+          <li>
+            <article><strong><h4>d) Un costat i dos angles.</strong></h4><p><img src="Imatges\1costats_.jpg" alt="1 costat i 2 angles"><a href="https://www.geogebra.org/m/bjgdqcsj">📌 Visualitza amb GeoGebra </a></p></article>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Secció 5 -->
+    <section class="card">
+      <h2>5. Teorema del sinus</a></h2> 
+      <h3>El quocient entre un costat d'un triangle i el sinus de l’angle oposat és constant.</h3>
+      <div>
+        <img src="Imatges\Tsinus_.jpg" alt="Teorema del sinus">
+        <a href="https://www.geogebra.org/m/jrcwg4cn">📌 Visualitza amb GeoGebra</a>
+      </div>
+    </section>
+
+    <!-- Secció 6 -->
+    <section class="card">
+      <h2>6. Teorema del cosinus</a></h2> 
+      <h3>El quadrat d'un costat d'un triangle és igual a la suma dels quadrats dels altres dos menys el doble del producte d’aquests dos costats pel cosinus de l’angle oposat al primer.</h3>
+      <div>
+        <img src="Imatges\Tcosinus_.jpg" alt="Teorema del cosinus">
+        <a href="https://www.geogebra.org/m/qx5xdaau">📌 Visualitza amb GeoGebra</a>
+      </div>
+    </section>
+
+    <!-- Bloc Destacat 2 -->
+    <section class="card callout">
+      <h2>Resolució de triangles</h2>
+      <h4>En geometria, la resolució d'un triangle consisteix en la determinació dels diferents elements del triangle (longituds dels costats, mesura dels angles) a partir d'alguns altres.</h4>
+      <h2>Puc demanar:</h2>
+      <ol>
+        <li><h4>Demostrar els teoremes del sinus i el cosinus</h4></li>
+        <li><h4>Demanar si es pot determinar un triangle</h4></li>
+        <li><h4>Resoldre un o més triangles utilitzant els teoremes del sinus i el cosinus</h4></li>
+        <li><h4>Resoldre problemes on hagis de resoldre un o més triangles</h4></li>
+      </ol>
+    </section>
+
+    <!-- Secció 7 -->
+    <section class="card">
+      <h2>7. Altres fórmules de trigonometria amb demostració.</h2>
+      <ol class="indent-list no-bullets">
+        <li>
+          <article><h4>a) Cosinus de la suma.</h4><p><img src="Imatges\SumaCosinus_.jpg" alt="Suma cosinus"></p></article>
+        </li>
+        <li>
+          <article>
+            <h4>b) Cosinus de la resta.</h4>
+            <div class="formula-box">cos(&alpha;&minus;&beta;) = cos(&alpha;)&middot;cos(&minus;&beta;) &minus; sin(&alpha;)&middot;sin(&minus;&beta;)<br>cos(&alpha;&minus;&beta;) = cos(&alpha;)&middot;cos(&beta;) + sin(&alpha;)&middot;sin(&beta;)</div>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h4>c) Sinus de la suma.</h4>
+            <div class="formula-box">sin(&alpha;+&beta;) = cos(90&minus;&alpha;&minus;&beta;) = cos(90&minus;&alpha;)&middot;cos(&beta;) + sin(90&minus;&alpha;)&middot;sin(&beta;)<br>sin(&alpha;+&beta;) = sin(&alpha;)&middot;cos(&beta;) + cos(&alpha;)&middot;sin(&beta;)</div>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h4>d) Sinus de la resta.</h4>
+            <div class="formula-box">sin(&alpha;&minus;&beta;) = sin(&alpha;)&middot;cos(&beta;) &minus; cos(&alpha;)&middot;sin(&beta;)</div>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h4>e) Sinus i cosinus de l'angle doble.</h4>
+            <div class="formula-box">cos(2&alpha;) = cos<sup>2</sup>(&alpha;) &minus; sin<sup>2</sup>(&alpha;)</div>
+            <div class="formula-box">sin(2&alpha;) = 2&middot;sin(&alpha;)&middot;cos(&alpha;)</div>
+          </article>
+        </li>
+      </ol>
+    </section>
+  </div>
+</main>
+</body>
+</html>
